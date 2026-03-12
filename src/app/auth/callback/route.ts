@@ -28,13 +28,15 @@ export async function GET(request: NextRequest) {
     const { data, error } = await supabase.auth.exchangeCodeForSession(code)
 
     if (!error && data.session) {
-      // Google Calendar の provider_token があれば保存
-      if (data.session.provider_token) {
+      // Calendar OAuth flow (connectCalendar) returns a refresh_token via access_type:offline.
+      // Only save to calendar_tokens when we have a refresh_token to avoid overwriting a valid
+      // calendar token with a basic-scope (openid email profile) login token.
+      if (data.session.provider_token && data.session.provider_refresh_token) {
         await supabase.from('calendar_tokens').upsert(
           {
             user_id: data.session.user.id,
             access_token: data.session.provider_token,
-            refresh_token: data.session.provider_refresh_token ?? null,
+            refresh_token: data.session.provider_refresh_token,
             expires_at: new Date(Date.now() + 3600 * 1000).toISOString(),
             updated_at: new Date().toISOString(),
           },

@@ -44,8 +44,12 @@ export async function GET(request: NextRequest) {
     return NextResponse.json(events)
   } catch (err) {
     const message = err instanceof Error ? err.message : 'Unknown error'
-    const status = message === 'Google Calendar not connected' ? 403 : 500
-    return NextResponse.json({ error: message }, { status })
+    const isAuthError =
+      message === 'Google Calendar not connected' ||
+      message.toLowerCase().includes('insufficient') ||
+      message.toLowerCase().includes('unauthorized') ||
+      message.toLowerCase().includes('invalid_grant')
+    return NextResponse.json({ error: message }, { status: isAuthError ? 403 : 500 })
   }
 }
 
@@ -84,7 +88,11 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(event, { status: 201 })
   } catch (err) {
     const message = err instanceof Error ? err.message : 'Unknown error'
-    const status = message === 'Google Calendar not connected' ? 403 : 500
-    return NextResponse.json({ error: message }, { status })
+    const isAuthError =
+      message === 'Google Calendar not connected' ||
+      message.toLowerCase().includes('insufficient') ||
+      message.toLowerCase().includes('unauthorized') ||
+      message.toLowerCase().includes('invalid_grant')
+    return NextResponse.json({ error: message }, { status: isAuthError ? 403 : 500 })
   }
 }
