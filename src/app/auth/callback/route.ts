@@ -51,9 +51,5 @@ export async function GET(request: NextRequest) {
     return NextResponse.redirect(`${origin}${next}`)
   }
 
-  // Dump all query params for debugging
-  const allParams: Record<string, string> = {}
-  searchParams.forEach((value, key) => { allParams[key] = value })
-  const reason = encodeURIComponent(JSON.stringify(allParams))
-  return NextResponse.redirect(`${origin}/login?error=auth_callback_failed&reason=${reason}`)
+  return NextResponse.redirect(`${origin}/login?error=auth_callback_failed`)
 }
