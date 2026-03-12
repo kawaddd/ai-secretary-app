@@ -121,7 +121,7 @@ export function Header({ onMenuToggle }: HeaderProps) {
 
           {notifOpen && (
             <div
-              className="absolute right-0 top-full mt-2 w-80 rounded-xl border border-border bg-background-elevated overflow-hidden z-50"
+              className="absolute right-0 top-full mt-2 w-[calc(100vw-2rem)] max-w-80 rounded-xl border border-border bg-background-elevated overflow-hidden z-50"
               style={{ boxShadow: 'var(--shadow-lg)' }}
               role="dialog"
               aria-label="通知"

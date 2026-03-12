@@ -177,7 +177,7 @@ export default function FeaturesPage() {
       </nav>
 
       {/* ─── Hero ─── */}
-      <section className="flex flex-col items-center text-center px-6 pt-16 pb-14">
+      <section className="flex flex-col items-center text-center px-5 sm:px-6 pt-10 sm:pt-16 pb-10 sm:pb-14">
         <div
           className="flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-semibold border mb-7"
           style={{ color: '#0a84ff', backgroundColor: 'rgba(10,132,255,0.10)', borderColor: 'rgba(10,132,255,0.22)' }}
@@ -225,7 +225,7 @@ export default function FeaturesPage() {
       </section>
 
       {/* ─── Feature Sections ─── */}
-      <div className="max-w-5xl mx-auto px-6 md:px-10 pb-10 space-y-5">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 md:px-10 pb-10 space-y-4 sm:space-y-5">
         {features.map((f, i) => (
           <section
             key={f.id}
@@ -241,7 +241,7 @@ export default function FeaturesPage() {
           >
             {/* Section header */}
             <div
-              className="flex items-start gap-5 px-8 pt-8 pb-6"
+              className="flex items-start gap-4 sm:gap-5 px-5 sm:px-8 pt-5 sm:pt-8 pb-4 sm:pb-6"
               style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}
             >
               {/* Faint number */}
@@ -288,7 +288,7 @@ export default function FeaturesPage() {
             <div className="grid md:grid-cols-2 divide-y md:divide-y-0 md:divide-x" style={{ borderColor: 'rgba(255,255,255,0.05)' }}>
 
               {/* Use cases */}
-              <div className="px-8 py-6">
+              <div className="px-5 sm:px-8 py-5 sm:py-6">
                 <p
                   className="text-xs font-bold uppercase tracking-widest mb-4"
                   style={{ color: f.accentColor }}
@@ -316,7 +316,7 @@ export default function FeaturesPage() {
               </div>
 
               {/* Steps */}
-              <div className="px-8 py-6">
+              <div className="px-5 sm:px-8 py-5 sm:py-6">
                 <p
                   className="text-xs font-bold uppercase tracking-widest mb-4"
                   style={{ color: f.accentColor }}
@@ -353,9 +353,9 @@ export default function FeaturesPage() {
       </div>
 
       {/* ─── CTA ─── */}
-      <section className="flex flex-col items-center text-center px-6 py-20">
+      <section className="flex flex-col items-center text-center px-4 sm:px-6 py-12 sm:py-20">
         <div
-          className="w-full max-w-xl rounded-3xl p-10 border"
+          className="w-full max-w-xl rounded-3xl p-7 sm:p-10 border"
           style={{
             backgroundColor: 'rgba(22,22,24,0.80)',
             backdropFilter: 'blur(20px)',

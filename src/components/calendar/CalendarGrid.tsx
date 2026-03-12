@@ -114,7 +114,7 @@ export function CalendarGrid({ currentDate, events, tasks, onSelectDate, onSelec
             ...dayEvents.map((e): OverflowItem => ({ kind: 'event', data: e })),
             ...dayTasks.map((t): OverflowItem => ({ kind: 'task', data: t })),
           ]
-          const visibleItems = allItems.slice(0, 3)
+          const visibleItems = allItems.slice(0, 3) // CSS controls mobile visibility (max 1 shown)
           const hiddenCount = allItems.length - visibleItems.length
 
           return (
@@ -122,7 +122,7 @@ export function CalendarGrid({ currentDate, events, tasks, onSelectDate, onSelec
               key={dateStr + idx}
               onClick={() => onSelectDate(dateStr)}
               className={[
-                'min-h-[100px] p-1.5 cursor-pointer transition-colors duration-100',
+                'min-h-[64px] sm:min-h-[100px] p-1 sm:p-1.5 cursor-pointer transition-colors duration-100',
                 !isLastCol ? 'border-r border-border/60' : '',
                 !isLastRow ? 'border-b border-border/60' : '',
                 !isCurrentMonth ? 'bg-fill-tertiary/25' : 'hover:bg-fill-secondary/40',
@@ -151,7 +151,7 @@ export function CalendarGrid({ currentDate, events, tasks, onSelectDate, onSelec
 
               {/* Items */}
               <div className="space-y-[3px]">
-                {visibleItems.map((item) =>
+                {visibleItems.map((item, idx) =>
                   item.kind === 'event' ? (
                     <button
                       key={item.data.id}
@@ -159,12 +159,15 @@ export function CalendarGrid({ currentDate, events, tasks, onSelectDate, onSelec
                         e.stopPropagation()
                         onSelectEvent(item.data)
                       }}
-                      className="w-full text-left pl-1.5 pr-1 py-[2px] rounded-r-md text-[11px] border-l-2 border-primary bg-primary/10 text-foreground hover:bg-primary/18 transition-colors duration-100 truncate leading-tight"
+                      className={[
+                        'w-full text-left pl-1.5 pr-1 py-[2px] rounded-r-md text-[11px] border-l-2 border-primary bg-primary/10 text-foreground hover:bg-primary/18 transition-colors duration-100 truncate leading-tight',
+                        idx >= 1 ? 'hidden sm:block' : '',
+                      ].join(' ')}
                       title={item.data.summary}
                     >
-                      {item.data.start.dateTime && (
-                        <span className="text-foreground-tertiary mr-1">{formatEventTime(item.data)}</span>
-                      )}
+                      <span className="hidden sm:inline text-foreground-tertiary mr-1">
+                        {item.data.start.dateTime ? formatEventTime(item.data) : ''}
+                      </span>
                       {item.data.summary}
                     </button>
                   ) : (
@@ -174,7 +177,10 @@ export function CalendarGrid({ currentDate, events, tasks, onSelectDate, onSelec
                         e.stopPropagation()
                         onSelectTask(item.data)
                       }}
-                      className="w-full text-left pl-1.5 pr-1 py-[2px] rounded-r-md text-[11px] border-l-2 border-warning bg-warning/10 text-foreground hover:bg-warning/20 transition-colors duration-100 truncate leading-tight"
+                      className={[
+                        'w-full text-left pl-1.5 pr-1 py-[2px] rounded-r-md text-[11px] border-l-2 border-warning bg-warning/10 text-foreground hover:bg-warning/20 transition-colors duration-100 truncate leading-tight',
+                        idx >= 1 ? 'hidden sm:block' : '',
+                      ].join(' ')}
                       title={item.data.title}
                     >
                       {item.data.title}

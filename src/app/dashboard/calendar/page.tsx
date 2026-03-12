@@ -275,14 +275,18 @@ export default function CalendarPage() {
           )}
 
           {(view === 'week' || view === 'day') && (
-            <CalendarTimeGrid
-              days={timeGridDays}
-              events={events}
-              tasks={tasks}
-              onSelectDate={(dateStr, hour) => openNewEvent(dateStr, hour)}
-              onSelectEvent={openEditEvent}
-              onSelectTask={openEditTask}
-            />
+            <div className={view === 'week' ? 'overflow-x-auto -mx-5 lg:mx-0 px-5 lg:px-0' : ''}>
+              <div className={view === 'week' ? 'min-w-[520px] lg:min-w-0' : ''}>
+                <CalendarTimeGrid
+                  days={timeGridDays}
+                  events={events}
+                  tasks={tasks}
+                  onSelectDate={(dateStr, hour) => openNewEvent(dateStr, hour)}
+                  onSelectEvent={openEditEvent}
+                  onSelectTask={openEditTask}
+                />
+              </div>
+            </div>
           )}
         </>
       )}

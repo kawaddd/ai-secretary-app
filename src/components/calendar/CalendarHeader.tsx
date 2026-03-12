@@ -58,10 +58,10 @@ export function CalendarHeader({
   onAddTask,
 }: Props) {
   return (
-    <div className="flex items-center justify-between gap-3 flex-wrap">
+    <div className="flex items-center justify-between gap-2 flex-wrap">
       {/* Left: title + navigation */}
-      <div className="flex items-center gap-2">
-        <h2 className="text-lg font-semibold text-foreground tabular-nums min-w-[152px]">
+      <div className="flex items-center gap-1 sm:gap-2">
+        <h2 className="text-sm sm:text-lg font-semibold text-foreground tabular-nums min-w-0">
           {getTitle(view, currentDate)}
         </h2>
         <div className="flex items-center">
@@ -86,14 +86,14 @@ export function CalendarHeader({
         </div>
         <button
           onClick={onToday}
-          className="px-2.5 py-1 text-xs font-medium rounded-lg border border-border text-foreground-secondary hover:text-foreground hover:border-primary/60 transition-colors duration-150"
+          className="px-2 sm:px-2.5 py-1 text-xs font-medium rounded-lg border border-border text-foreground-secondary hover:text-foreground hover:border-primary/60 transition-colors duration-150"
         >
           今日
         </button>
       </div>
 
       {/* Right: view switcher + actions */}
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-1.5 sm:gap-2">
         {/* View switcher */}
         <div className="flex rounded-lg border border-border overflow-hidden">
           {VIEW_OPTIONS.map((opt) => (
@@ -101,7 +101,7 @@ export function CalendarHeader({
               key={opt.value}
               onClick={() => onViewChange(opt.value)}
               className={[
-                'px-3 py-1.5 text-xs font-medium transition-colors duration-150',
+                'px-2.5 sm:px-3 py-1.5 text-xs font-medium transition-colors duration-150',
                 view === opt.value
                   ? 'bg-primary text-white'
                   : 'text-foreground-secondary hover:text-foreground hover:bg-fill-secondary',
@@ -113,28 +113,30 @@ export function CalendarHeader({
         </div>
 
         {/* Divider */}
-        <div className="w-px h-5 bg-border" />
+        <div className="w-px h-5 bg-border hidden sm:block" />
 
-        {/* Task: secondary outline */}
+        {/* Task button: icon-only on mobile */}
         <button
           onClick={onAddTask}
-          className="flex items-center gap-1 px-3 py-1.5 text-xs font-medium rounded-lg border border-warning/50 text-warning hover:bg-warning-bg hover:border-warning transition-colors duration-150"
+          aria-label="タスクを追加"
+          className="flex items-center gap-1 px-2 sm:px-3 py-1.5 text-xs font-medium rounded-lg border border-warning/50 text-warning hover:bg-warning-bg hover:border-warning transition-colors duration-150"
         >
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
             <path d="M12 5v14M5 12h14" />
           </svg>
-          タスク
+          <span className="hidden sm:inline">タスク</span>
         </button>
 
-        {/* Event: primary filled */}
+        {/* Event button: icon-only on mobile */}
         <button
           onClick={onAddEvent}
-          className="flex items-center gap-1 px-3 py-1.5 text-xs font-medium rounded-lg bg-primary text-white hover:bg-primary/90 transition-colors duration-150"
+          aria-label="予定を追加"
+          className="flex items-center gap-1 px-2 sm:px-3 py-1.5 text-xs font-medium rounded-lg bg-primary text-white hover:bg-primary/90 transition-colors duration-150"
         >
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
             <path d="M12 5v14M5 12h14" />
           </svg>
-          予定
+          <span className="hidden sm:inline">予定</span>
         </button>
       </div>
     </div>

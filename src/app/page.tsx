@@ -14,7 +14,7 @@ export default function Home() {
       }}
     >
       {/* ── Hero ── */}
-      <main className="flex flex-col items-center justify-center px-8 pt-20 pb-16">
+      <main className="flex flex-col items-center justify-center px-5 sm:px-8 pt-12 sm:pt-20 pb-12 sm:pb-16">
 
         {/* Title */}
         <h1
@@ -62,7 +62,7 @@ export default function Home() {
         </div>
 
         {/* ── Feature Cards ── */}
-        <div className="grid grid-cols-3 gap-5 w-full max-w-7xl">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 w-full max-w-7xl">
           {/* タスク管理: System Blue */}
           <FeatureCard
             icon={<IconClipboard color="#0a84ff" />}

@@ -63,7 +63,7 @@ function LoginForm() {
               <path d="M12 14c-6 0-8 3-8 4v1h16v-1c0-1-2-4-8-4" />
             </svg>
           </div>
-          <h1 className="text-xl font-semibold text-foreground">AI秘書</h1>
+          <h1 className="text-xl font-semibold text-foreground">AI Secretary</h1>
           <p className="text-sm text-foreground-secondary mt-1">アカウントにサインインしてください</p>
         </div>
 
