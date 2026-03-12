@@ -10,6 +10,7 @@ function LoginForm() {
   const [error, setError] = useState<string | null>(null)
   const searchParams = useSearchParams()
   const callbackError = searchParams.get('error')
+  const callbackReason = searchParams.get('reason')
 
   async function handleSignIn() {
     try {
@@ -70,7 +71,10 @@ function LoginForm() {
         {/* Error messages */}
         {(error || callbackError) && (
           <div className="mb-5 px-4 py-3 rounded-xl bg-danger-bg border border-danger text-sm text-danger">
-            {error ?? '認証に失敗しました。再度お試しください。'}
+            <p>{error ?? '認証に失敗しました。再度お試しください。'}</p>
+            {callbackReason && (
+              <p className="mt-1 text-xs opacity-70 break-all">{callbackReason}</p>
+            )}
           </div>
         )}
 
