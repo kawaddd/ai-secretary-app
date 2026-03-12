@@ -111,8 +111,8 @@ export function CalendarGrid({ currentDate, events, tasks, onSelectDate, onSelec
           const dayTasks = tasksByDate.get(dateStr) ?? []
 
           const allItems: OverflowItem[] = [
-            ...dayEvents.map((e): Item => ({ kind: 'event', data: e })),
-            ...dayTasks.map((t): Item => ({ kind: 'task', data: t })),
+            ...dayEvents.map((e): OverflowItem => ({ kind: 'event', data: e })),
+            ...dayTasks.map((t): OverflowItem => ({ kind: 'task', data: t })),
           ]
           const visibleItems = allItems.slice(0, 3)
           const hiddenCount = allItems.length - visibleItems.length
