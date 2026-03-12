@@ -51,5 +51,9 @@ export async function GET(request: NextRequest) {
     return NextResponse.redirect(`${origin}${next}`)
   }
 
-  return NextResponse.redirect(`${origin}/login?error=auth_callback_failed&reason=no_code`)
+  // Capture what Google/Supabase actually sent back for debugging
+  const oauthError = searchParams.get('error') ?? 'no_code'
+  const oauthErrorDesc = searchParams.get('error_description') ?? ''
+  const reason = encodeURIComponent(`${oauthError}: ${oauthErrorDesc}`)
+  return NextResponse.redirect(`${origin}/login?error=auth_callback_failed&reason=${reason}`)
 }
