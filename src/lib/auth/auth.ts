@@ -5,12 +5,8 @@ export async function signInWithGoogle() {
   const { error } = await supabase.auth.signInWithOAuth({
     provider: 'google',
     options: {
-      scopes: 'openid email profile https://www.googleapis.com/auth/calendar',
+      scopes: 'openid email profile',
       redirectTo: `${window.location.origin}/auth/callback`,
-      queryParams: {
-        access_type: 'offline',
-        prompt: 'consent',
-      },
     },
   })
   if (error) throw error
