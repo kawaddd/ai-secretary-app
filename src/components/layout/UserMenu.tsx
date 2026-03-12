@@ -1,12 +1,10 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { useRouter } from 'next/navigation'
 import { useAuth } from '@/lib/auth/AuthContext'
 
 export function UserMenu() {
   const { user, signOut } = useAuth()
-  const router = useRouter()
   const name = user?.user_metadata?.full_name ?? user?.email ?? 'AI User'
   const email = user?.email ?? ''
   const [open, setOpen] = useState(false)
@@ -86,7 +84,7 @@ export function UserMenu() {
               onClick={async () => {
                 setOpen(false)
                 await signOut()
-                router.replace('/')
+                window.location.href = '/'
               }}
               className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-danger hover:bg-danger-bg transition-colors duration-100 focus-visible:outline-none focus-visible:bg-danger-bg"
             >
